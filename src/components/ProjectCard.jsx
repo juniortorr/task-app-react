@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import styles from '../styles/ProjectCard.module.scss';
-
+import { Link } from 'react-router-dom';
 function ProjectCard({ project }) {
   return (
     <div className={styles.projCard} id="{{this.title}}">
@@ -13,8 +13,9 @@ function ProjectCard({ project }) {
           <p>{project.title}</p>
           <div className={styles.priorityLevel} id={project.title}></div>
         </label>
-
-        <button className={styles.newTaskBtn}>+ add new task</button>
+        <Link to={'/projects/' + project.id}>
+          <button className={styles.newTaskBtn}>+ add new task</button>
+        </Link>
       </ul>
     </div>
   );
