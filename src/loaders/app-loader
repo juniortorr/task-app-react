@@ -1,0 +1,8 @@
+import storage from '../data';
+
+async function loader() {
+  const tasks = await storage.getTasks();
+  return { tasks };
+}
+
+export { loader as appLoader };
