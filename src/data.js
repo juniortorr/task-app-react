@@ -1,10 +1,13 @@
 class Storage {
   constructor() {
-    this.tasks = ['clean'];
+    this.tasks = [{ title: 'clean' }];
   }
 
   getTasks() {
     return this.tasks;
+  }
+  addProject(project) {
+    this.tasks.push(project);
   }
 }
 
