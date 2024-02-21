@@ -8,14 +8,17 @@ import {
 } from 'react-router-dom';
 import App from './components/App.jsx';
 import NewProject from './components/New-Project.jsx';
-import { appLoader } from './loaders/app-loader';
+import { appLoader, newTaskLoader } from './loaders/app-loader';
 import './index.css';
 import { formAction } from './components/New-Project.jsx';
+import NewTask from './components/New-Task.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />} loader={appLoader}></Route>
-      <Route path="/new-project" element={<NewProject />} action={formAction}></Route>
+      <Route path="/" element={<App />} loader={appLoader}>
+        <Route path="projects/:projectId" element={<NewTask />} loader={newTaskLoader}></Route>
+      </Route>
+      <Route path="new-project" element={<NewProject />} action={formAction}></Route>
     </>
   )
 );

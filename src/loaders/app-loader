@@ -5,4 +5,11 @@ async function loader() {
   return { tasks };
 }
 
-export { loader as appLoader };
+async function newTaskLoader({ params }) {
+  const id = Number(params.projectId);
+  const task = await storage.getTaskById(id);
+  console.log(task);
+  return { task };
+}
+
+export { loader as appLoader, newTaskLoader };
