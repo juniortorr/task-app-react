@@ -1,20 +1,18 @@
-import { useState } from 'react';
-import { Outlet, useLoaderData } from 'react-router-dom';
-import '../styles/App.css';
+import { useLoaderData } from 'react-router-dom';
 import Nav from './Nav';
+import styles from '../styles/App.module.scss';
+import ProjectCard from './ProjectCard';
 
 function App() {
   const { tasks } = useLoaderData();
-  const [allProjects, setAllProjects] = useState(tasks);
-
   return (
     <>
       <Nav />
-      <section className="container">
-        {allProjects.map((project, index) => {
-          return <p key={index}>{project}</p>;
+      <section className={styles.container}>
+        {tasks.map((project, index) => {
+          console.log(project, index);
+          return <ProjectCard key={index} project={project} />;
         })}
-        <Outlet />
       </section>
     </>
   );
