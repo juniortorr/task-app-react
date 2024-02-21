@@ -6,14 +6,16 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
-import App from './App.jsx';
+import App from './components/App.jsx';
+import { appLoader } from './loaders/app-loader';
 import './index.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />}></Route>
-      <Route path="/child" element={<div>Hello there</div>}></Route>
+      <Route path="/" element={<App />} loader={appLoader}>
+        <Route path="/new-project" element={<div>New Project</div>}></Route>
+      </Route>
     </>
   )
 );
