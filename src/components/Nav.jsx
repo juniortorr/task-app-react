@@ -2,6 +2,10 @@ import styles from '../styles/Nav.module.scss';
 import { Link } from 'react-router-dom';
 
 function Nav() {
+  function handleClick() {
+    console.log('yo');
+  }
+
   return (
     <nav className={styles.nav}>
       <Link to="/">
@@ -12,7 +16,11 @@ function Nav() {
         <button className="option upcoming">Upcoming</button>
         <button className="option all">All</button>
       </div>
-      <button className={styles.newProjectBtn}>+</button>
+      <Link to="/new-project">
+        <button onClick={handleClick} className={styles.newProjectBtn}>
+          +
+        </button>
+      </Link>
     </nav>
   );
 }
