@@ -4,9 +4,6 @@ import { Form } from 'react-router-dom';
 import storage from '../data';
 import { useNavigate } from 'react-router-dom';
 import Project from '../helpers/project';
-async function action() {
-  return console.log('done');
-}
 
 function NewProject() {
   let navigate = useNavigate();
@@ -44,4 +41,3 @@ function NewProject() {
 }
 
 export default NewProject;
-export { action as formAction };

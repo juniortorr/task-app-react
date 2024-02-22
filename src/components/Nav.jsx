@@ -2,9 +2,7 @@ import styles from '../styles/Nav.module.scss';
 import { Link } from 'react-router-dom';
 
 function Nav() {
-  function handleClick() {
-    console.log('yo');
-  }
+  function handleClick() {}
 
   return (
     <nav className={styles.nav}>
