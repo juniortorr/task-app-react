@@ -7,4 +7,8 @@ export default class Project {
     this.id = id += 1;
     console.log(this);
   }
+
+  addTask(task) {
+    this.tasks.push(task);
+  }
 }

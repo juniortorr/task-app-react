@@ -8,11 +8,16 @@ function ProjectCard({ project }) {
         <h1 className={styles.projTitle}>{project.title}</h1>
       </div>
       <ul className={styles.taskList}>
-        <label className={styles.taskContainer} htmlFor="checkBoxes">
-          <input type="checkbox" id="checkBoxes" name="checkbox"></input>
-          <p>{project.title}</p>
-          <div className={styles.priorityLevel} id={project.title}></div>
-        </label>
+        {project.tasks.map((eachProject, index) => {
+          console.log(eachProject);
+          return (
+            <label key={index} className={styles.taskContainer} htmlFor="checkBoxes">
+              <input type="checkbox" id="checkBoxes" name="checkbox"></input>
+              <p>{eachProject.title}</p>
+              <div className={styles.priorityLevel} id={project.title}></div>
+            </label>
+          );
+        })}
         <Link to={'/projects/' + project.id}>
           <button className={styles.newTaskBtn}>+ add new task</button>
         </Link>
