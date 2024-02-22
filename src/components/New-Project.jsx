@@ -9,6 +9,7 @@ function NewProject() {
   let navigate = useNavigate();
 
   async function handleClick(e) {
+    e.preventDefault();
     const project = new Project(e.target[0].value);
     await storage.addProject(project);
     navigate('/');
@@ -18,7 +19,7 @@ function NewProject() {
     <>
       <Nav></Nav>
       <section>
-        <Form method="post" onSubmit={handleClick} className={styles.newProjectPopup}>
+        <Form onSubmit={handleClick} className={styles.newProjectPopup}>
           <input
             name="project-name"
             required

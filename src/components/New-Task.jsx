@@ -1,22 +1,28 @@
 import { useLoaderData, Form, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import styles from '../styles/New-Task.module.scss';
 import Task from '../helpers/task';
-
+import TodoList from './Todo-List';
 function NewTask() {
-  const { task } = useLoaderData();
+  const { project } = useLoaderData();
   const navigate = useNavigate();
+  const [taskState, setTasks] = useState(project.tasks);
 
   async function onSubmit(e) {
     e.preventDefault();
+    console.log(e);
     const title = e.target[0].value;
     const dueDate = e.target[3].value;
     const desc = e.target[4].value;
     const newTask = new Task(title, dueDate, desc);
-    await task.addTask(newTask);
+    await project.addTask(newTask);
     navigate('/');
   }
 
-  console.log(task);
+  // function handleClick(e) {
+  //   console.log(e);
+  // }
+
   return (
     <Form className={styles.newTaskPopup} onSubmit={onSubmit}>
       <div className={styles.popUpLeft}>
@@ -28,21 +34,12 @@ function NewTask() {
           type="text"
         ></input>
         <div className={styles.todoForm}>
-          <input
-            className={styles.newTodo}
-            type="text"
-            placeholder="new todo"
-            name="new-todo"
-          ></input>
-          <ul className={styles.todoList}></ul>
-          <button className="addNewTodo" type="button">
-            + add new todo
-          </button>
+          <TodoList taskState={taskState} setTasks={setTasks} styles={styles} />
         </div>
       </div>
       <div className={styles.popUpLeft}>
         <input
-          type="text"
+          type="date"
           name="dueDate"
           id="dueDate"
           className={styles.dueDate}

@@ -9,7 +9,6 @@ function ProjectCard({ project }) {
       </div>
       <ul className={styles.taskList}>
         {project.tasks.map((eachProject, index) => {
-          console.log(eachProject);
           return (
             <label key={index} className={styles.taskContainer} htmlFor="checkBoxes">
               <input type="checkbox" id="checkBoxes" name="checkbox"></input>

@@ -7,9 +7,9 @@ async function loader() {
 
 async function newTaskLoader({ params }) {
   const id = Number(params.projectId);
-  const task = await storage.getTaskById(id);
-  console.log(task);
-  return { task };
+  const project = await storage.getTaskById(id);
+  console.log({ 'New Task Loader': 'Fetch Project by ID Sucess!' });
+  return { project };
 }
 
 export { loader as appLoader, newTaskLoader };

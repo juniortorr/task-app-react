@@ -11,7 +11,7 @@ class Storage {
   }
 
   getTaskById(id) {
-    const task = this.tasks.filter((product) => product.id === id);
+    const task = this.tasks.filter((product) => product.id ===  id);
     console.log(task);
     return task[0];
   }
