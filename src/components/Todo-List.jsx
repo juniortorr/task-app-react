@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 
-function TodoList({ styles, taskState, setTasks }) {
+function TodoList({ styles, todos, setTodos }) {
   const [currentTask, setCurrentTask] = useState('');
   function handleClick() {
-    console.log(taskState);
-    setTasks(() => [...taskState, currentTask]);
+    console.log(todos);
+    setTodos(() => [...todos, currentTask]);
   }
   function handleChange(e) {
     setCurrentTask(() => e.target.value);
@@ -20,8 +20,8 @@ function TodoList({ styles, taskState, setTasks }) {
         name="new-todo"
       ></input>
       <ul className={styles.todoList}>
-        {taskState.length > 0 &&
-          taskState.map((task, index) => {
+        {todos.length > 0 &&
+          todos.map((task, index) => {
             return <p key={index}>{task}</p>;
           })}
       </ul>

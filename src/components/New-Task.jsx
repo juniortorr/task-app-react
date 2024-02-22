@@ -6,7 +6,7 @@ import TodoList from './Todo-List';
 function NewTask() {
   const { project } = useLoaderData();
   const navigate = useNavigate();
-  const [taskState, setTasks] = useState(project.tasks);
+  const [todos, setTodos] = useState([]);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -14,14 +14,10 @@ function NewTask() {
     const title = e.target[0].value;
     const dueDate = e.target[3].value;
     const desc = e.target[4].value;
-    const newTask = new Task(title, dueDate, desc);
+    const newTask = new Task(title, dueDate, desc, todos);
     await project.addTask(newTask);
     navigate('/');
   }
-
-  // function handleClick(e) {
-  //   console.log(e);
-  // }
 
   return (
     <Form className={styles.newTaskPopup} onSubmit={onSubmit}>
@@ -34,7 +30,7 @@ function NewTask() {
           type="text"
         ></input>
         <div className={styles.todoForm}>
-          <TodoList taskState={taskState} setTasks={setTasks} styles={styles} />
+          <TodoList todos={todos} setTodos={setTodos} styles={styles} />
         </div>
       </div>
       <div className={styles.popUpLeft}>

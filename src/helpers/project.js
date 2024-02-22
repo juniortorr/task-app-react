@@ -10,6 +10,6 @@ export default class Project {
 
   addTask(task) {
     this.tasks.push(task);
-    console.log(this);
+    console.log({ addTask: 'task added to project success!', project: this });
   }
 }
