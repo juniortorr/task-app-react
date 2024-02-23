@@ -4,9 +4,9 @@ import styles from '../styles/New-Task.module.scss';
 import Task from '../helpers/task';
 import TodoList from './Todo-List';
 function NewTask() {
-  const { project } = useLoaderData();
+  const { project, task } = useLoaderData();
   const navigate = useNavigate();
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(task ? task.todos : []);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -14,21 +14,33 @@ function NewTask() {
     const title = e.target[0].value;
     const dueDate = e.target[3].value;
     const desc = e.target[4].value;
-    const newTask = new Task(title, dueDate, desc, todos);
-    await project.addTask(newTask);
+    if (task) {
+      console.log(task);
+      await task.setValues(title, dueDate, desc, todos);
+    } else {
+      const newTask = new Task(title, dueDate, desc, todos);
+      await project.addTask(newTask);
+    }
+
     navigate('/');
   }
 
   return (
     <Form className={styles.newTaskPopup} onSubmit={onSubmit}>
       <div className={styles.popUpLeft}>
-        <input
-          required
-          placeholder="new task"
-          className="newTask"
-          name="taskName"
-          type="text"
-        ></input>
+        <label htmlFor="new-task">
+          New Task
+          <input
+            required
+            placeholder="new task"
+            defaultValue={task ? task.title : undefined}
+            className="newTask"
+            name="taskName"
+            type="text"
+            id="new-task"
+          ></input>
+        </label>
+
         <div className={styles.todoForm}>
           <TodoList todos={todos} setTodos={setTodos} styles={styles} />
         </div>
@@ -38,12 +50,20 @@ function NewTask() {
           type="date"
           name="dueDate"
           id="dueDate"
+          defaultValue={task ? task.dueDate : undefined}
           className={styles.dueDate}
           placeholder="MM/DD/YYYY"
           // onBlur="(this.type='text')"
           // onFocus="(this.type='date')"
         ></input>
-        <textarea className={styles.textarea} name="desc" id="desc" cols="30" rows="10"></textarea>
+        <textarea
+          className={styles.textarea}
+          defaultValue={task ? task.desc : undefined}
+          name="desc"
+          id="desc"
+          cols="30"
+          rows="10"
+        ></textarea>
         <button type="submit" className={styles.taskComplete}>
           Complete Setup
         </button>
