@@ -12,4 +12,7 @@ export default class Project {
     this.tasks.push(task);
     console.log({ addTask: 'task added to project success!', project: this });
   }
+  getTaskById(id) {
+    return this.tasks.filter((task) => task.id === id)[0];
+  }
 }

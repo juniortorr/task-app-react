@@ -16,4 +16,11 @@ export default class Task {
     this.todos = [...args];
     console.log({ 'set todo': 'set!', todos: this.todos });
   }
+
+  setValues(title, dueDate, desc, todos) {
+    this.title = title;
+    this.dueDate = dueDate;
+    this.desc = desc;
+    this.todos = todos;
+  }
 }

@@ -3,15 +3,15 @@ class Storage {
     this.tasks = [];
   }
 
-  getTasks() {
+  getProjects() {
     return this.tasks;
   }
   addProject(project) {
     this.tasks.push(project);
   }
 
-  getTaskById(id) {
-    const task = this.tasks.filter((product) => product.id ===  id);
+  getProjectById(id) {
+    const task = this.tasks.filter((product) => product.id === id);
     console.log(task);
     return task[0];
   }
