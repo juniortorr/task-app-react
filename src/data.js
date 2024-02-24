@@ -1,19 +1,19 @@
 class Storage {
   constructor() {
-    this.tasks = [];
+    this.projects = [];
   }
 
   getProjects() {
-    return this.tasks;
+    return this.projects;
   }
   addProject(project) {
-    this.tasks.push(project);
+    this.projects.push(project);
   }
 
   getProjectById(id) {
-    const task = this.tasks.filter((product) => product.id === id);
-    console.log(task);
-    return task[0];
+    const project = this.projects.filter((proj) => proj.id === id);
+    console.log(project);
+    return project[0];
   }
 }
 
