@@ -3,6 +3,7 @@ import { useState } from 'react';
 import styles from '../styles/New-Task.module.scss';
 import Task from '../helpers/task';
 import TodoList from './Todo-List';
+import { format, addDays } from 'date-fns';
 function NewTask() {
   const { project, task } = useLoaderData();
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ function NewTask() {
     e.preventDefault();
     console.log(e);
     const title = e.target[0].value;
-    const dueDate = e.target[3].value;
+    const addDay = addDays(format(e.target[3].value, 'MM/dd/yyyy'), 1);
+    const dueDate = format(addDay, 'MM/dd/yyyy');
     const desc = e.target[4].value;
     if (task) {
       console.log(task);
