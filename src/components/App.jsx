@@ -5,12 +5,12 @@ import ProjectCard from './ProjectCard';
 import { Outlet } from 'react-router-dom';
 
 function App() {
-  const { tasks } = useLoaderData();
+  const { projects } = useLoaderData();
   return (
     <>
       <Nav />
       <section className={styles.container}>
-        {tasks.map((project, index) => {
+        {projects.map((project, index) => {
           return <ProjectCard key={index} project={project} />;
         })}
         <Outlet></Outlet>
