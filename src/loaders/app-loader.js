@@ -1,8 +1,9 @@
 import storage from '../data';
+import { format } from 'date-fns';
 
-async function loader() {
-  const tasks = await storage.getProjects();
-  return { tasks };
+async function appLoader() {
+  const projects = await storage.getProjects();
+  return { projects };
 }
 
 async function newTaskLoader({ params }) {
@@ -19,4 +20,15 @@ async function editTaskLoader({ params }) {
   const task = await project.getTaskById(taskId);
   return { project, task };
 }
-export { loader as appLoader, newTaskLoader, editTaskLoader };
+
+async function getTodaysTasks() {
+  const today = format(new Date(), 'MM/dd/yyyy');
+  let allTasks = [];
+  storage.projects.forEach((project) => {
+    allTasks = [...allTasks, ...project.tasks];
+  });
+  const tasks = allTasks.filter((task) => task.dueDate === today);
+  return { tasks };
+}
+
+export { appLoader, newTaskLoader, editTaskLoader, getTodaysTasks };

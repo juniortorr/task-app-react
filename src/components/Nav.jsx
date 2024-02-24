@@ -10,9 +10,13 @@ function Nav() {
         <h1>Projects</h1>
       </Link>
       <div className={styles.sortOptions}>
-        <button className="option today">Today</button>
+        <Link to="/tasks/today">
+          <button className="option today">Today</button>
+        </Link>
         <button className="option upcoming">Upcoming</button>
-        <button className="option all">All</button>
+        <Link to="/">
+          <button className="option all">All</button>
+        </Link>
       </div>
       <Link to="/new-project">
         <button onClick={handleClick} className={styles.newProjectBtn}>

@@ -8,9 +8,10 @@ import {
 } from 'react-router-dom';
 import App from './components/App.jsx';
 import NewProject from './components/New-Project.jsx';
-import { appLoader, newTaskLoader, editTaskLoader } from './loaders/app-loader';
+import { appLoader, newTaskLoader, editTaskLoader, getTodaysTasks } from './loaders/app-loader';
 import './index.css';
 import NewTask from './components/New-Task.jsx';
+import FilteredTasks from './components/Filtered-Tasks.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
           loader={editTaskLoader}
         ></Route>
       </Route>
+      <Route path="/tasks/today" element={<FilteredTasks />} loader={getTodaysTasks}></Route>
       <Route path="new-project" element={<NewProject />}></Route>
     </>
   )
