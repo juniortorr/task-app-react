@@ -1,5 +1,5 @@
 import storage from '../data';
-import { format } from 'date-fns';
+import { format, differenceInCalendarDays, isBefore } from 'date-fns';
 
 async function appLoader() {
   const projects = await storage.getProjects();
@@ -31,4 +31,15 @@ async function getTodaysTasks() {
   return { tasks };
 }
 
-export { appLoader, newTaskLoader, editTaskLoader, getTodaysTasks };
+async function getUpcomingTasks() {
+  const today = format(new Date(), 'MM/dd/yyyy');
+  let allTasks = [];
+  storage.projects.forEach((project) => {
+    allTasks = [...allTasks, ...project.tasks];
+  });
+  const tasks = allTasks.filter(
+    (task) => differenceInCalendarDays(today, task.dueDate) <= 5 && isBefore(today, task.dueDate)
+  );
+  return { tasks };
+}
+export { appLoader, newTaskLoader, editTaskLoader, getTodaysTasks, getUpcomingTasks };

@@ -13,7 +13,9 @@ function Nav() {
         <Link to="/tasks/today">
           <button className="option today">Today</button>
         </Link>
-        <button className="option upcoming">Upcoming</button>
+        <Link to="/tasks/upcoming">
+          <button className="option upcoming">Upcoming</button>
+        </Link>
         <Link to="/">
           <button className="option all">All</button>
         </Link>

@@ -14,13 +14,14 @@ function NewTask() {
     console.log(e);
     const title = e.target[0].value;
     const addDay = addDays(format(e.target[3].value, 'MM/dd/yyyy'), 1);
-    const dueDate = format(addDay, 'MM/dd/yyyy');
+    const preFormatDueDate = e.target[3].value;
+    const formattedDueDate = format(addDay, 'MM/dd/yyyy');
     const desc = e.target[4].value;
     if (task) {
       console.log(task);
-      await task.setValues(title, dueDate, desc, todos);
+      await task.setValues(title, formattedDueDate, desc, todos, preFormatDueDate);
     } else {
-      const newTask = new Task(title, dueDate, desc, todos);
+      const newTask = new Task(title, formattedDueDate, desc, todos, preFormatDueDate);
       await project.addTask(newTask);
     }
 
@@ -52,7 +53,7 @@ function NewTask() {
           type="date"
           name="dueDate"
           id="dueDate"
-          defaultValue={task ? task.dueDate : undefined}
+          defaultValue={task ? task.preFormatDueDate : undefined}
           className={styles.dueDate}
           placeholder="MM/DD/YYYY"
           // onBlur="(this.type='text')"

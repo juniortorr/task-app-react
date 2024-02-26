@@ -6,12 +6,20 @@ import {
   createRoutesFromElements,
   Route,
 } from 'react-router-dom';
+import {
+  appLoader,
+  newTaskLoader,
+  editTaskLoader,
+  getTodaysTasks,
+  getUpcomingTasks,
+} from './loaders/app-loader';
 import App from './components/App.jsx';
 import NewProject from './components/New-Project.jsx';
-import { appLoader, newTaskLoader, editTaskLoader, getTodaysTasks } from './loaders/app-loader';
-import './index.css';
 import NewTask from './components/New-Task.jsx';
 import FilteredTasks from './components/Filtered-Tasks.jsx';
+import Upcoming from './components/Upcoming.jsx';
+import './index.css';
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -24,6 +32,7 @@ const router = createBrowserRouter(
         ></Route>
       </Route>
       <Route path="/tasks/today" element={<FilteredTasks />} loader={getTodaysTasks}></Route>
+      <Route path="/tasks/upcoming" element={<Upcoming />} loader={getUpcomingTasks}></Route>
       <Route path="new-project" element={<NewProject />}></Route>
     </>
   )
