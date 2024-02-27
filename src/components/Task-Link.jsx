@@ -16,6 +16,6 @@ function TaskLink({ styles, task, projectId }) {
 TaskLink.propTypes = {
   styles: PropTypes.object,
   task: PropTypes.object,
-  projectId: PropTypes.number,
+  projectId: PropTypes.string,
 };
 export default TaskLink;
