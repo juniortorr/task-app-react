@@ -6,8 +6,19 @@ class Storage {
   getProjects() {
     return this.projects;
   }
+
+  setProjects(arr) {
+    this.projects = arr;
+  }
+
+  deleteProject(project) {
+    this.projects = this.projects.filter((proj) => proj.id !== project.id);
+    localStorage.setItem('projects', JSON.stringify(this.projects));
+  }
+
   addProject(project) {
     this.projects.push(project);
+    localStorage.setItem('projects', JSON.stringify(this.projects));
   }
 
   getProjectById(id) {

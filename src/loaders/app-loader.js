@@ -1,21 +1,43 @@
+import Project from '../helpers/project';
+import Task from '../helpers/task';
 import storage from '../data';
 import { format, differenceInCalendarDays, isBefore } from 'date-fns';
 
 async function appLoader() {
+  const arr = [];
+  const jsonProjects = await localStorage.getItem('projects');
+  if (jsonProjects) {
+    const parsedProjects = await JSON.parse(jsonProjects);
+    parsedProjects.forEach((project) => {
+      const serializedProject = new Project(project.title);
+      project.tasks.forEach((task) => {
+        const serializedTask = new Task(
+          task.title,
+          task.formattedDate,
+          task.desc,
+          task.todos,
+          task.preFormatDueDate
+        );
+        serializedProject.addTask(serializedTask);
+      });
+      arr.push(serializedProject);
+    });
+  }
+  storage.setProjects(arr);
   const projects = await storage.getProjects();
   return { projects };
 }
 
 async function newTaskLoader({ params }) {
-  const id = Number(params.projectId);
+  const id = params.projectId;
   const project = await storage.getProjectById(id);
   console.log({ 'New Task Loader': 'Fetch Project by ID Sucess!', project: project });
   return { project };
 }
 
 async function editTaskLoader({ params }) {
-  const projectId = Number(params.projectId);
-  const taskId = Number(params.taskId);
+  const projectId = params.projectId;
+  const taskId = params.taskId;
   const project = await storage.getProjectById(projectId);
   const task = await project.getTaskById(taskId);
   return { project, task };
