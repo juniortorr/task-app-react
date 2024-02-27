@@ -1,4 +1,4 @@
-let id = 0;
+import { v4 as uuidv4 } from 'uuid';
 
 export default class Task {
   constructor(title, formattedDueDate, desc, todos, preFormatDueDate) {
@@ -9,7 +9,7 @@ export default class Task {
     this.value = title;
     this.checkStatus;
     this.priority;
-    this.id = id += 1;
+    this.id = uuidv4();
     this.preFormatDueDate = preFormatDueDate;
   }
 
