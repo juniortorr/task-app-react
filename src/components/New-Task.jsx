@@ -1,4 +1,4 @@
-import { useLoaderData, Form, useNavigate } from 'react-router-dom';
+import { useLoaderData, Form, useNavigate, useOutletContext } from 'react-router-dom';
 import { useState } from 'react';
 import styles from '../styles/New-Task.module.scss';
 import Task from '../helpers/task';
@@ -8,6 +8,8 @@ function NewTask() {
   const { project, task } = useLoaderData();
   const navigate = useNavigate();
   const [todos, setTodos] = useState(task ? task.todos : []);
+  // eslint-disable-next-line no-unused-vars
+  const [status, setAlertStatus] = useOutletContext();
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -24,7 +26,19 @@ function NewTask() {
       const newTask = new Task(title, formattedDueDate, desc, todos, preFormatDueDate);
       await project.addTask(newTask);
     }
+    setAlertStatus(() => 'alert');
+    setTimeout(() => {
+      setAlertStatus(() => 'display');
+    }, 3000);
+    navigate('/');
+  }
 
+  async function handleDelete() {
+    await project.deleteTask(task);
+    setAlertStatus(() => 'alert');
+    setTimeout(() => {
+      setAlertStatus(() => 'display');
+    }, 3000);
     navigate('/');
   }
 
@@ -68,8 +82,9 @@ function NewTask() {
           rows="10"
         ></textarea>
         <button type="submit" className={styles.taskComplete}>
-          Complete Setup
+          Confirm
         </button>
+        {task && <button onClick={handleDelete}> Delete Task</button>}
       </div>
     </Form>
   );

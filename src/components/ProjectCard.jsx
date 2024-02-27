@@ -1,12 +1,38 @@
 import PropTypes from 'prop-types';
 import styles from '../styles/ProjectCard.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import TaskLink from './Task-Link';
-function ProjectCard({ project }) {
+import { useState } from 'react';
+import storage from '../data';
+function ProjectCard({ project, setAlertStatus }) {
+  const [status, setStatus] = useState('display');
+  const navigate = useNavigate();
+
+  function handleEdit() {
+    setStatus(() => 'edit');
+  }
+
+  async function handleDeleteProject() {
+    await storage.deleteProject(project);
+    setAlertStatus(() => 'alert');
+    setTimeout(() => {
+      setAlertStatus(() => 'display');
+    }, 3000);
+    navigate('/');
+  }
+
+  if (status === 'edit') {
+    return (
+      <div className={styles.projCard}>
+        <button onClick={handleDeleteProject}>Delete</button>
+      </div>
+    );
+  }
   return (
-    <div className={styles.projCard} id="{{this.title}}">
-      <div className={styles.projTitleBox} id="{{this.title}}">
+    <div className={styles.projCard}>
+      <div className={styles.projTitleBox}>
         <h1 className={styles.projTitle}>{project.title}</h1>
+        <button onClick={handleEdit}>edit</button>
       </div>
       <ul className={styles.taskList}>
         {project.tasks.map((eachTask, index) => {
@@ -22,5 +48,6 @@ function ProjectCard({ project }) {
 
 ProjectCard.propTypes = {
   project: PropTypes.object,
+  setAlertStatus: PropTypes.function,
 };
 export default ProjectCard;

@@ -1,23 +1,26 @@
-import Nav from './Nav';
 import styles from '../styles/New-Project.module.scss';
-import { Form } from 'react-router-dom';
+import { Form, useOutletContext } from 'react-router-dom';
 import storage from '../data';
 import { useNavigate } from 'react-router-dom';
 import Project from '../helpers/project';
 
 function NewProject() {
+  // eslint-disable-next-line no-unused-vars
+  const [status, setAlertStatus] = useOutletContext();
   let navigate = useNavigate();
-
   async function handleClick(e) {
     e.preventDefault();
     const project = new Project(e.target[0].value);
     await storage.addProject(project);
+    setAlertStatus(() => 'alert');
+    setTimeout(() => {
+      setAlertStatus(() => 'display');
+    }, 3000);
     navigate('/');
   }
 
   return (
     <>
-      <Nav></Nav>
       <section>
         <Form onSubmit={handleClick} className={styles.newProjectPopup}>
           <input
