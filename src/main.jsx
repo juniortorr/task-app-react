@@ -30,10 +30,10 @@ const router = createBrowserRouter(
           element={<NewTask />}
           loader={editTaskLoader}
         ></Route>
+        <Route path="new-project" element={<NewProject />}></Route>
       </Route>
       <Route path="/tasks/today" element={<FilteredTasks />} loader={getTodaysTasks}></Route>
       <Route path="/tasks/upcoming" element={<Upcoming />} loader={getUpcomingTasks}></Route>
-      <Route path="new-project" element={<NewProject />}></Route>
     </>
   )
 );
