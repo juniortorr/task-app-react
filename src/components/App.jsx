@@ -14,6 +14,11 @@ function App() {
       <Nav />
       <h1 className={styles.allProjects}>All Projects</h1>
       <section className={styles.container}>
+        {projects.length === 0 && (
+          <h1 className={styles.noProjects}>
+            No New <br /> Projects
+          </h1>
+        )}
         {projects.map((project, index) => {
           return <ProjectCard key={index} project={project} setAlertStatus={setAlertStatus} />;
         })}

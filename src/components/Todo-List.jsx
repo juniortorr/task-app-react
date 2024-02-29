@@ -15,8 +15,8 @@ function TodoList({ styles, todos, setTodos }) {
   }
   return (
     <>
-      <label htmlFor="new-todo">
-        New Todo:
+      <label htmlFor="new-todo">New Todo:</label>
+      <div className={styles.todoInputWrapper}>
         <input
           onChange={handleChange}
           className={styles.newTodo}
@@ -26,17 +26,17 @@ function TodoList({ styles, todos, setTodos }) {
           name="new-todo"
           id="new-todo"
         ></input>
-      </label>
-
+        <button onClick={handleClick} className="addNewTodo" type="button">
+          +
+        </button>
+      </div>
       <ul className={styles.todoList}>
+        {todos.length === 0 && <p>Todos will be printed here</p>}
         {todos.length > 0 &&
           todos.map((task, index) => {
-            return <p key={index}>{task}</p>;
+            return <li key={index}>{task}</li>;
           })}
       </ul>
-      <button onClick={handleClick} className="addNewTodo" type="button">
-        + add new todo
-      </button>
     </>
   );
 }

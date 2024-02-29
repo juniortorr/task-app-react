@@ -1,39 +1,98 @@
+@keyframes slide-in {
+  0% {
+    transform: translateY(1000px);
+  }
+  90% {
+    transform: translateY(-20px);
+    transform: scaleY(1.1);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@keyframes slide-out {
+  0% {
+    transform: translateY(0px);
+  }
+
+  10% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(700px);
+  }
+}
+
+.slideUp {
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+  // display: none;
+}
+.slideOut {
+  animation-name: slide-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-direction: alternate;
+}
+
 .newTaskPopup {
   position: absolute;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  top: 120px;
-  left: 50%;
-  width: 800px;
-  height: 430px;
-  background: #d9d9d9;
-  z-index: 5;
-  margin-left: -400px;
-  box-sizing: border-box;
-  border-radius: 15px;
-}
-.popUpLeft {
-  display: flex;
   flex-direction: column;
-  gap: 20px;
-  height: 100%;
   align-items: center;
-  justify-content: center;
-  width: 45%;
-  align-items: center;
+  top: 25vh;
+  background-color: #f1faee;
+  width: 100vw;
   box-sizing: border-box;
+  overflow-y: scroll;
+  padding: 20px;
+  gap: 10px;
+  // height: 75vh;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 
-  * {
+  input {
     width: 80%;
+    max-width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  label {
+    margin: 0;
+    margin-top: 10px;
+    font-size: 1.1rem;
+    // align-self: flex-start;
   }
 }
 
 .todoList {
-  height: 80px;
+  height: 150px;
   margin: 0 0;
   padding: 0 0;
+  width: 80%;
+  background-color: white;
+  max-width: 300px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+  padding: 10px;
+
+  p {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    color: #3f3f3f98;
+  }
+}
+.taskName {
+  align-self: center;
 }
 .todoForm {
   display: flex;
@@ -59,20 +118,53 @@
   height: 150px;
   resize: none;
   box-sizing: border-box;
-  padding: 15px 15px;
+  padding: 10px;
+  width: 80%;
+  max-width: 300px;
+  border-radius: 10px;
+  border: none;
+}
+.deleteTaskBtn {
+  background-color: rgb(0 0 0 / 0%);
+  max-width: 300px;
+  width: 80%;
+  padding: 15px;
+  border: 2px solid rgb(172, 7, 7);
+  color: rgb(172, 7, 7);
 }
 .taskComplete {
+  margin-top: 10px;
   background-color: rgb(0 0 0 / 0%);
   border: 2px solid green;
   color: green;
-  height: 60px;
-}
-.newTodo {
-  border: none;
-  border-bottom: 1px solid black;
+  padding: 15px;
+  width: 80%;
+  box-sizing: border-box;
+  max-width: 300px;
 }
 .dueDate {
-  height: 60px;
-  box-sizing: border-box;
-  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+}
+.todoInputWrapper {
+  display: flex;
+  width: 80%;
+  max-width: 300px;
+  justify-content: space-between;
+  input {
+    width: 100%;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  button {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: none;
+    padding: 10px;
+    box-sizing: border-box;
+    background-color: #1d3557;
+    color: white;
+  }
 }
