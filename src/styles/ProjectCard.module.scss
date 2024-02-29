@@ -8,6 +8,20 @@
   position: relative;
   border-radius: 15px;
   gap: 20px;
+  transition: all 0.1s ease-in-out;
+}
+.editProjCard {
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  button {
+    width: 60%;
+    padding: 15px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+  }
 }
 .projCardHeader {
   display: flex;

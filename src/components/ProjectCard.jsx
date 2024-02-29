@@ -12,9 +12,7 @@ function ProjectCard({ project, setAlertStatus }) {
     setStatus(() => 'edit');
   }
 
-  async function handleDeleteProject() {
-    await storage.deleteProject(project);
-    setAlertStatus(() => 'Project Deleted!');
+  function handleGoBack() {
     setTimeout(() => {
       setAlertStatus(() => 'hide');
     }, 3000);
@@ -22,10 +20,17 @@ function ProjectCard({ project, setAlertStatus }) {
     navigate('/');
   }
 
+  async function handleDeleteProject() {
+    await storage.deleteProject(project);
+    setAlertStatus(() => 'Project Deleted!');
+    await handleGoBack();
+  }
+
   if (status === 'edit') {
     return (
-      <div className={styles.projCard}>
+      <div className={`${styles.projCard} ${styles.editProjCard}`}>
         <button onClick={handleDeleteProject}>Delete</button>
+        <button onClick={handleGoBack}>Go Back</button>
       </div>
     );
   }
