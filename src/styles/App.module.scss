@@ -27,16 +27,19 @@
 
 .alert {
   position: absolute;
-  height: 300px;
-  width: 800px;
-  background-color: green;
+  top: 80px;
+  width: 70vw;
+  box-sizing: border-box;
+  padding: 20px 40px;
+  background-color: #4dd784;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 1rem;
   transform: translateY(-500px);
-  left: calc(50% - 400px);
+  left: calc(50% - 35vw);
+  border-radius: 10px;
   z-index: 5;
-  // animation: slide-in 3s ease-in-out 0 1;
   animation-name: slide-in;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;

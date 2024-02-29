@@ -68,9 +68,9 @@
 }
 .closePopup {
   position: absolute;
-  font-size: 1rem;
-  top: 10px;
-  right: 10px;
+  font-size: 1.2rem;
+  top: 15px;
+  right: 15px;
   background-color: rgb(0 0 0 / 0%);
   border: none;
 }
@@ -87,8 +87,12 @@
   border-radius: 10px;
   box-sizing: border-box;
   cursor: pointer;
+  background: linear-gradient(#3a5f93, #1d3557);
+  color: #f1faee;
+  font-size: 1rem;
 }
 label {
   margin-top: 50px;
   font-size: 1.3rem;
+  font-weight: bold;
 }

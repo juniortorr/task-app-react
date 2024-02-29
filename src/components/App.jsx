@@ -7,10 +7,10 @@ import { useState } from 'react';
 
 function App() {
   const { projects } = useLoaderData();
-  const [status, setAlertStatus] = useState('');
+  const [status, setAlertStatus] = useState('hide');
   return (
     <>
-      {status === 'alert' && <h2 className={styles.alert}>Success!</h2>}
+      {status !== 'hide' && <h2 className={styles.alert}>{status}</h2>}
       <Nav />
       <h1 className={styles.allProjects}>All Projects</h1>
       <section className={styles.container}>

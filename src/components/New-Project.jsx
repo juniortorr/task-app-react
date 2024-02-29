@@ -15,9 +15,9 @@ function NewProject() {
     setOpen(() => !open);
     const project = new Project(e.target[0].value);
     await storage.addProject(project);
-    setAlertStatus(() => 'alert');
+    setAlertStatus(() => 'Project Added!');
     setTimeout(() => {
-      setAlertStatus(() => 'display');
+      setAlertStatus(() => 'hide');
     }, 3000);
     setTimeout(() => {
       navigate('/');

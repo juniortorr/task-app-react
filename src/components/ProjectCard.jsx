@@ -14,10 +14,11 @@ function ProjectCard({ project, setAlertStatus }) {
 
   async function handleDeleteProject() {
     await storage.deleteProject(project);
-    setAlertStatus(() => 'alert');
+    setAlertStatus(() => 'Project Deleted!');
     setTimeout(() => {
-      setAlertStatus(() => 'display');
+      setAlertStatus(() => 'hide');
     }, 3000);
+    setStatus(() => 'display');
     navigate('/');
   }
 
