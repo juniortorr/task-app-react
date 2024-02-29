@@ -48,6 +48,6 @@ function ProjectCard({ project, setAlertStatus }) {
 
 ProjectCard.propTypes = {
   project: PropTypes.object,
-  setAlertStatus: PropTypes.function,
+  setAlertStatus: PropTypes.func,
 };
 export default ProjectCard;

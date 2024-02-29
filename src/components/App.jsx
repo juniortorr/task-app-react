@@ -12,6 +12,7 @@ function App() {
     <>
       {status === 'alert' && <h2 className={styles.alert}>Success!</h2>}
       <Nav />
+      <h1 className={styles.allProjects}>All Projects</h1>
       <section className={styles.container}>
         {projects.map((project, index) => {
           return <ProjectCard key={index} project={project} setAlertStatus={setAlertStatus} />;
