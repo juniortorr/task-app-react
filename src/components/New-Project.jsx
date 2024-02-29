@@ -12,13 +12,16 @@ function NewProject() {
   let navigate = useNavigate();
   async function handleClick(e) {
     e.preventDefault();
+    setOpen(() => !open);
     const project = new Project(e.target[0].value);
     await storage.addProject(project);
     setAlertStatus(() => 'alert');
     setTimeout(() => {
       setAlertStatus(() => 'display');
     }, 3000);
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+    }, 400);
   }
 
   function handleClosePopup() {
@@ -38,7 +41,9 @@ function NewProject() {
             : `${styles.newProjectPopup} ${styles.slideOut}`
         }
       >
+        <label htmlFor="project-name">New Project:</label>
         <input
+          id="project-name"
           name="project-name"
           required
           className={styles.title}
@@ -49,8 +54,8 @@ function NewProject() {
           X
         </button>
         <div className={styles.newProjectOptions}>
-          <button type="submit" className="createProject">
-            Create New Project
+          <button className={styles.createProjectBtn} type="submit">
+            Create Project
           </button>
         </div>
       </Form>
