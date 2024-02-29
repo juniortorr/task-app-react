@@ -30,9 +30,11 @@ function ProjectCard({ project, setAlertStatus }) {
   }
   return (
     <div className={styles.projCard}>
-      <div className={styles.projTitleBox}>
+      <div className={styles.projCardHeader}>
         <h1 className={styles.projTitle}>{project.title}</h1>
-        <button onClick={handleEdit}>edit</button>
+        <button onClick={handleEdit}>
+          <img src="/public/images/options.png" alt="edit cart button" />
+        </button>
       </div>
       <ul className={styles.taskList}>
         {project.tasks.map((eachTask, index) => {

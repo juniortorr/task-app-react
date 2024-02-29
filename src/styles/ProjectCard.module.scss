@@ -1,35 +1,43 @@
 .projCard {
-  width: 300px;
-  height: 400px;
-  background: linear-gradient(to top right, rgb(142, 142, 142), lightgrey, white);
+  width: 90%;
+  max-width: 345px;
+  padding: 40px 0px;
+  background: linear-gradient(#badcdd, #a8dadc);
   display: flex;
   flex-direction: column;
   position: relative;
   border-radius: 15px;
+  gap: 20px;
 }
-.projTitleBox {
+.projCardHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 60px;
-  padding: 0px 20px;
   box-sizing: border-box;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  padding: 0 20px;
+
+  img {
+    height: 10px;
+    cursor: pointer;
+  }
+
+  button {
+    border: none;
+    padding: 0 0;
+    background-color: #a8dadc00;
+  }
 }
-.projTitleBox img {
-  height: 10px;
-  cursor: pointer;
-}
+
 .projTitle {
   margin: 0 0;
   box-sizing: border-box;
   color: black;
 }
 .priorityLevel {
-  width: 50px;
+  width: 40px;
   border-radius: 10px;
-  height: 18px;
+  height: 10px;
+  background-color: red;
 }
 .taskContainer {
   display: flex;
@@ -39,9 +47,28 @@
   border-bottom: 2px solid black;
   width: 85%;
 }
+.left {
+  color: black;
+  text-decoration: none;
+  margin: 0 0;
+}
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .taskContainer p {
   margin: 0;
   font-size: 18px;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  box-sizing: border-box;
+  border-bottom: 2px solid black;
+  gap: 10px;
+  padding: 20px 0px 7px 0px;
 }
 
 .taskList {
@@ -55,7 +82,7 @@
   padding: 0px;
 }
 .newTaskBtn {
-  background-color: rgb(0 0 0 / 0%);
+  background-color: rgba(0, 0, 0, 0);
   border: none;
   margin-top: 10px;
   font-size: 1rem;

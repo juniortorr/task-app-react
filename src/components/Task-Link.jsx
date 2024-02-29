@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 
 function TaskLink({ styles, task, projectId }) {
   return (
-    <Link to={`/projects/${projectId}/${task.id}`}>
-      <label className={styles.taskContainer} htmlFor="checkBoxes">
-        <input type="checkbox" id="checkBoxes" name="checkbox"></input>
-        <p>{task.title}</p>
+    <Link className={styles.task} to={`/projects/${projectId}/${task.id}`}>
+      <p className={styles.left}>{task.title}</p>
+      <div className={styles.right}>
         <div className={styles.priorityLevel} id={task.title}></div>
-      </label>
+        <img src="/public/images/pencil.png" alt="edit task button" />
+      </div>
     </Link>
   );
 }
