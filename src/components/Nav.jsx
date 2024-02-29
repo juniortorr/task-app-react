@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import styles from '../styles/Nav.module.scss';
 import { Link } from 'react-router-dom';
 
 function Nav() {
-  function handleClick() {}
+  const [menu, setMenuStatus] = useState(false);
+
+  function handleClick() {
+    setMenuStatus(() => !menu);
+  }
 
   return (
     <nav className={styles.nav}>
@@ -20,11 +25,32 @@ function Nav() {
           <button className="option all">All</button>
         </Link>
       </div>
-      <Link className={styles.links} to="/new-project">
+      {/* <Link className={styles.links} to="/new-project">
         <button onClick={handleClick} className={styles.newProjectBtn}>
           <img src="/public/images/options-toggle.png" alt="toggle options button" />
         </button>
-      </Link>
+      </Link> */}
+      <button onClick={handleClick} className={styles.newProjectBtn}>
+        <img src="/public/images/options-toggle.png" alt="toggle options button" />
+      </button>
+      {menu === true && (
+        <div className={styles.modal}>
+          <header>
+            <h1>Tasker</h1>
+            <button onClick={handleClick}>X</button>
+          </header>
+          <section>
+            <h2>All Projects</h2>
+            <h2>Today&apos;s Projects</h2>
+            <h2>Upcoming Projects</h2>
+          </section>
+          <Link to="/new-project">
+            <button className={styles.newProject} onClick={handleClick}>
+              New Project
+            </button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }

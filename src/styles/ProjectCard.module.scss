@@ -14,7 +14,7 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  padding: 0 20px;
+  padding: 0 25px;
 
   img {
     height: 10px;
@@ -32,6 +32,7 @@
   margin: 0 0;
   box-sizing: border-box;
   color: black;
+  font-size: 1.3rem;
 }
 .priorityLevel {
   width: 40px;
@@ -51,6 +52,7 @@
   color: black;
   text-decoration: none;
   margin: 0 0;
+  font-size: 1.1rem;
 }
 .right {
   display: flex;
@@ -66,9 +68,9 @@
   justify-content: space-between;
   width: 75%;
   box-sizing: border-box;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid rgba(39, 39, 39, 0.322);
   gap: 10px;
-  padding: 20px 0px 7px 0px;
+  padding: 20px 0px 10px 0px;
 }
 
 .taskList {
@@ -84,6 +86,6 @@
 .newTaskBtn {
   background-color: rgba(0, 0, 0, 0);
   border: none;
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 1rem;
 }
