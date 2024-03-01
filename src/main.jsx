@@ -17,7 +17,6 @@ import App from './components/App.jsx';
 import NewProject from './components/New-Project.jsx';
 import NewTask from './components/New-Task.jsx';
 import FilteredTasks from './components/Filtered-Tasks.jsx';
-import Upcoming from './components/Upcoming.jsx';
 import './index.css';
 
 const router = createBrowserRouter(
@@ -32,8 +31,16 @@ const router = createBrowserRouter(
         ></Route>
         <Route path="new-project" element={<NewProject />}></Route>
       </Route>
-      <Route path="/tasks/today" element={<FilteredTasks />} loader={getTodaysTasks}></Route>
-      <Route path="/tasks/upcoming" element={<Upcoming />} loader={getUpcomingTasks}></Route>
+      <Route
+        path="/tasks/today"
+        element={<FilteredTasks title={"Today's"} />}
+        loader={getTodaysTasks}
+      ></Route>
+      <Route
+        path="/tasks/upcoming"
+        element={<FilteredTasks title={'Upcoming'} />}
+        loader={getUpcomingTasks}
+      ></Route>
     </>
   )
 );

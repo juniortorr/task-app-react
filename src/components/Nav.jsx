@@ -40,9 +40,21 @@ function Nav() {
             <button onClick={handleClick}>X</button>
           </header>
           <section>
-            <h2>All Projects</h2>
-            <h2>Today&apos;s Projects</h2>
-            <h2>Upcoming Projects</h2>
+            <Link to="/">
+              <button onClick={handleClick} className={styles.option}>
+                All Projects
+              </button>
+            </Link>
+            <Link to="/tasks/today">
+              <button onClick={handleClick} className={styles.option}>
+                Today&apos;s Projects
+              </button>
+            </Link>
+            <Link to="/tasks/upcoming">
+              <button onClick={handleClick} className={styles.option}>
+                Upcoming
+              </button>
+            </Link>
           </section>
           <Link to="/new-project">
             <button className={styles.newProject} onClick={handleClick}>
