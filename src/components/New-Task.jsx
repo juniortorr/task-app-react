@@ -17,10 +17,10 @@ function NewTask() {
     console.log(e);
 
     const title = e.target[0].value;
-    const addDay = addDays(format(e.target[1].value, 'MM/dd/yyyy'), 1);
+    const addDay = addDays(format(e.target[2].value, 'MM/dd/yyyy'), 1);
     console.log(addDay);
     const preFormatDueDate = format(addDay, 'yyyy/MM/dd');
-    const formattedDueDate = e.target[1].value;
+    const formattedDueDate = e.target[2].value;
     console.log(formattedDueDate, preFormatDueDate);
     const desc = e.target[4].value;
     if (task) {
@@ -38,16 +38,26 @@ function NewTask() {
     }, 3000);
     setTimeout(() => {
       navigate('/');
-    }, 200);
+    }, 400);
+  }
+
+  async function handleClosePopup() {
+    setAnimationStatus(() => 'slide out');
+    setTimeout(() => {
+      navigate('/');
+    }, 400);
   }
 
   async function handleDelete() {
     await project.deleteTask(task);
+    setAnimationStatus(() => 'slide out');
     setAlertStatus(() => 'Deleted Task!');
     setTimeout(() => {
       setAlertStatus(() => 'hide');
     }, 3000);
-    navigate('/');
+    setTimeout(() => {
+      navigate('/');
+    }, 400);
   }
 
   return (
@@ -59,6 +69,9 @@ function NewTask() {
       }
       onSubmit={onSubmit}
     >
+      <button type="button" className={styles.closePopup} onClick={handleClosePopup}>
+        X
+      </button>
       <label className={styles.taskName} htmlFor="new-task">
         New Task:
       </label>
