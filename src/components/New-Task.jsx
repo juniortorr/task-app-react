@@ -18,8 +18,10 @@ function NewTask() {
 
     const title = e.target[0].value;
     const addDay = addDays(format(e.target[1].value, 'MM/dd/yyyy'), 1);
-    const preFormatDueDate = e.target[1].value;
-    const formattedDueDate = format(addDay, 'MM/dd/yyyy');
+    console.log(addDay);
+    const preFormatDueDate = format(addDay, 'yyyy/MM/dd');
+    const formattedDueDate = e.target[1].value;
+    console.log(formattedDueDate, preFormatDueDate);
     const desc = e.target[4].value;
     if (task) {
       console.log(task);
@@ -74,11 +76,9 @@ function NewTask() {
         type="date"
         name="dueDate"
         id="dueDate"
-        defaultValue={task ? task.preFormatDueDate : undefined}
+        defaultValue={task ? task.dueDate : undefined}
         className={styles.dueDate}
-        placeholder="MM/DD/YYYY"
-        // onBlur="(this.type='text')"
-        // onFocus="(this.type='date')"
+        placeholder={task ? task.preFormatDueDate : undefined}
       ></input>
 
       <TodoList todos={todos} setTodos={setTodos} styles={styles} />

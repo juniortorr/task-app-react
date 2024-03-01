@@ -1,7 +1,7 @@
 import Project from '../helpers/project';
 import Task from '../helpers/task';
 import storage from '../data';
-import { format, differenceInCalendarDays, isBefore } from 'date-fns';
+import { format, differenceInCalendarDays, isBefore, isToday } from 'date-fns';
 
 async function appLoader() {
   const arr = [];
@@ -13,7 +13,7 @@ async function appLoader() {
       project.tasks.forEach((task) => {
         const serializedTask = new Task(
           task.title,
-          task.formattedDate,
+          task.dueDate,
           task.desc,
           task.todos,
           task.preFormatDueDate
@@ -44,23 +44,30 @@ async function editTaskLoader({ params }) {
 }
 
 async function getTodaysTasks() {
-  const today = format(new Date(), 'MM/dd/yyyy');
+  const today = format(new Date(), 'yyyy/MM/dd');
+  console.log(today);
   let allTasks = [];
   storage.projects.forEach((project) => {
     allTasks = [...allTasks, ...project.tasks];
   });
-  const tasks = allTasks.filter((task) => task.dueDate === today);
+  const tasks = allTasks.filter((task) => {
+    console.log(task.preFormatDueDate);
+    return task.preFormatDueDate === today;
+  });
   return { tasks };
 }
 
 async function getUpcomingTasks() {
-  const today = format(new Date(), 'MM/dd/yyyy');
+  const today = format(new Date(), 'yyyy/MM/dd');
   let allTasks = [];
   storage.projects.forEach((project) => {
     allTasks = [...allTasks, ...project.tasks];
   });
   const tasks = allTasks.filter(
-    (task) => differenceInCalendarDays(today, task.dueDate) <= 5 && isBefore(today, task.dueDate)
+    (task) =>
+      (differenceInCalendarDays(today, task.preFormatDueDate) <= 5 &&
+        isBefore(today, task.preFormatDueDate)) ||
+      isToday(task.preFormatDueDate)
   );
   return { tasks };
 }
