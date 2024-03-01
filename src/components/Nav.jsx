@@ -31,7 +31,7 @@ function Nav() {
         </button>
       </Link> */}
       <button onClick={handleClick} className={styles.newProjectBtn}>
-        <img src="/public/images/options-toggle.png" alt="toggle options button" />
+        <img src="/images/options-toggle.png" alt="toggle options button" />
       </button>
       {menu === true && (
         <div className={styles.modal}>
