@@ -22,4 +22,9 @@ export default class Project {
   getTaskById(id) {
     return this.tasks.filter((task) => task.id === id)[0];
   }
+
+  updateData() {
+    localStorage.setItem('projects', JSON.stringify(storage.projects));
+    console.log('updated database successfully');
+  }
 }

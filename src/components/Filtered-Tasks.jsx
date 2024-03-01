@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 function FilteredTasks({ title }) {
   const { tasks } = useLoaderData();
-  console.log(tasks);
 
   return (
     <>

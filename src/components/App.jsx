@@ -8,6 +8,7 @@ import { useState } from 'react';
 function App() {
   const { projects } = useLoaderData();
   const [status, setAlertStatus] = useState('hide');
+
   return (
     <>
       {status !== 'hide' && <h2 className={styles.alert}>{status}</h2>}
@@ -22,7 +23,7 @@ function App() {
         {projects.map((project, index) => {
           return <ProjectCard key={index} project={project} setAlertStatus={setAlertStatus} />;
         })}
-        <Outlet context={[status, setAlertStatus]}></Outlet>
+        <Outlet context={{ status, setAlertStatus }}></Outlet>
       </section>
     </>
   );

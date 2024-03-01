@@ -6,7 +6,7 @@ function TaskLink({ styles, task, projectId }) {
     <Link className={styles.task} to={`/projects/${projectId}/${task.id}`}>
       <p className={styles.left}>{task.title}</p>
       <div className={styles.right}>
-        <div className={styles.priorityLevel} id={task.title}></div>
+        <div className={`${styles.priorityLevel} ${task.priority}`} id={task.title}></div>
         <img src="/public/images/pencil.png" alt="edit task button" />
       </div>
     </Link>

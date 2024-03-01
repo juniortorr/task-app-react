@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 function NewProject() {
   // eslint-disable-next-line no-unused-vars
-  const [status, setAlertStatus] = useOutletContext();
+  const { status, setAlertStatus } = useOutletContext();
   const [open, setOpen] = useState(true);
   let navigate = useNavigate();
   async function handleClick(e) {

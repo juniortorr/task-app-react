@@ -8,6 +8,7 @@ async function appLoader() {
   const jsonProjects = await localStorage.getItem('projects');
   if (jsonProjects) {
     const parsedProjects = await JSON.parse(jsonProjects);
+    console.log(parsedProjects);
     parsedProjects.forEach((project) => {
       const serializedProject = new Project(project.title);
       project.tasks.forEach((task) => {
@@ -45,13 +46,11 @@ async function editTaskLoader({ params }) {
 
 async function getTodaysTasks() {
   const today = format(new Date(), 'yyyy/MM/dd');
-  console.log(today);
   let allTasks = [];
   storage.projects.forEach((project) => {
     allTasks = [...allTasks, ...project.tasks];
   });
   const tasks = allTasks.filter((task) => {
-    console.log(task.formattedDate);
     return task.formattedDate === today;
   });
   return { tasks };
@@ -65,7 +64,7 @@ async function getUpcomingTasks() {
   });
   const tasks = allTasks.filter(
     (task) =>
-      (differenceInCalendarDays(today, task.formattedDate) <= 5 &&
+      (differenceInCalendarDays(task.formattedDate, today) <= 5 &&
         isBefore(today, task.formattedDate)) ||
       isToday(task.formattedDate)
   );

@@ -20,6 +20,18 @@ body {
   display: flex;
   flex-direction: column;
 }
+.purple {
+  background-color: purple;
+}
+.yellow {
+  background-color: yellow;
+}
+.red {
+  background-color: red;
+}
+.green {
+  background-color: green;
+}
 
 @media (min-width: 475px) {
   :root {

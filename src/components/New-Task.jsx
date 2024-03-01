@@ -3,31 +3,29 @@ import { useState } from 'react';
 import styles from '../styles/New-Task.module.scss';
 import Task from '../helpers/task';
 import TodoList from './Todo-List';
-import { format, addDays } from 'date-fns';
 function NewTask() {
   const { project, task } = useLoaderData();
   const navigate = useNavigate();
   const [todos, setTodos] = useState(task ? task.todos : []);
   // eslint-disable-next-line no-unused-vars
-  const [status, setAlertStatus] = useOutletContext();
+  const { status, setAlertStatus } = useOutletContext();
   const [animationStatus, setAnimationStatus] = useState('slide in');
 
   async function onSubmit(e) {
     e.preventDefault();
     console.log(e);
-
     const title = e.target[1].value;
-    const addDay = addDays(format(e.target[2].value, 'MM/dd/yyyy'), 1);
-    console.log(addDay);
-    const formattedDate = format(addDay, 'yyyy/MM/dd');
     const dueDate = e.target[2].value;
     const desc = e.target[5].value;
     if (task) {
       console.log(task);
-      await task.setValues(title, dueDate, desc, todos, formattedDate);
+      await task.setValues(title, dueDate, desc, todos);
+      await project.updateData();
+      task.setPriority();
+
       setAlertStatus(() => 'Task Changed!');
     } else {
-      const newTask = new Task(title, dueDate, desc, todos, formattedDate);
+      const newTask = new Task(title, dueDate, desc, todos);
       await project.addTask(newTask);
       setAlertStatus(() => 'Task Created!');
     }
