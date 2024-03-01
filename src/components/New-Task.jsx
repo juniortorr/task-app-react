@@ -16,19 +16,18 @@ function NewTask() {
     e.preventDefault();
     console.log(e);
 
-    const title = e.target[0].value;
+    const title = e.target[1].value;
     const addDay = addDays(format(e.target[2].value, 'MM/dd/yyyy'), 1);
     console.log(addDay);
-    const preFormatDueDate = format(addDay, 'yyyy/MM/dd');
-    const formattedDueDate = e.target[2].value;
-    console.log(formattedDueDate, preFormatDueDate);
-    const desc = e.target[4].value;
+    const formattedDate = format(addDay, 'yyyy/MM/dd');
+    const dueDate = e.target[2].value;
+    const desc = e.target[5].value;
     if (task) {
       console.log(task);
-      await task.setValues(title, formattedDueDate, desc, todos, preFormatDueDate);
+      await task.setValues(title, dueDate, desc, todos, formattedDate);
       setAlertStatus(() => 'Task Changed!');
     } else {
-      const newTask = new Task(title, formattedDueDate, desc, todos, preFormatDueDate);
+      const newTask = new Task(title, dueDate, desc, todos, formattedDate);
       await project.addTask(newTask);
       setAlertStatus(() => 'Task Created!');
     }
