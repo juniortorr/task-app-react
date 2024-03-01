@@ -90,7 +90,7 @@ function NewTask() {
         id="dueDate"
         defaultValue={task ? task.dueDate : undefined}
         className={styles.dueDate}
-        placeholder={task ? task.preFormatDueDate : undefined}
+        placeholder={task ? task.formattedDate : undefined}
       ></input>
 
       <TodoList todos={todos} setTodos={setTodos} styles={styles} />

@@ -16,7 +16,7 @@ async function appLoader() {
           task.dueDate,
           task.desc,
           task.todos,
-          task.preFormatDueDate
+          task.formattedDate
         );
         serializedProject.addTask(serializedTask);
       });
@@ -51,8 +51,8 @@ async function getTodaysTasks() {
     allTasks = [...allTasks, ...project.tasks];
   });
   const tasks = allTasks.filter((task) => {
-    console.log(task.preFormatDueDate);
-    return task.preFormatDueDate === today;
+    console.log(task.formattedDate);
+    return task.formattedDate === today;
   });
   return { tasks };
 }
@@ -65,9 +65,9 @@ async function getUpcomingTasks() {
   });
   const tasks = allTasks.filter(
     (task) =>
-      (differenceInCalendarDays(today, task.preFormatDueDate) <= 5 &&
-        isBefore(today, task.preFormatDueDate)) ||
-      isToday(task.preFormatDueDate)
+      (differenceInCalendarDays(today, task.formattedDate) <= 5 &&
+        isBefore(today, task.formattedDate)) ||
+      isToday(task.formattedDate)
   );
   return { tasks };
 }
