@@ -39,7 +39,7 @@ function ProjectCard({ project, setAlertStatus }) {
       <div className={styles.projCardHeader}>
         <h1 className={styles.projTitle}>{project.title}</h1>
         <button onClick={handleEdit}>
-          <img src="/public/images/options.png" alt="edit cart button" />
+          <img src="/images/options.png" alt="edit cart button" />
         </button>
       </div>
       <ul className={styles.taskList}>
