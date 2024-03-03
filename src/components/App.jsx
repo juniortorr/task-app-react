@@ -8,7 +8,7 @@ import { useState } from 'react';
 function App() {
   const { projects } = useLoaderData();
   const [status, setAlertStatus] = useState('hide');
-
+  document.title = 'Tasker';
   return (
     <>
       {status !== 'hide' && <h2 className={styles.alert}>{status}</h2>}
