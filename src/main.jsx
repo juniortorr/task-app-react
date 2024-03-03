@@ -17,12 +17,13 @@ import App from './components/App.jsx';
 import NewProject from './components/New-Project.jsx';
 import NewTask from './components/New-Task.jsx';
 import FilteredTasks from './components/Filtered-Tasks.jsx';
+import Error from './components/Error.jsx';
 import './index.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<App />} loader={appLoader}>
+      <Route path="/" element={<App />} loader={appLoader} errorElement={<Error />}>
         <Route path="projects/:projectId" element={<NewTask />} loader={newTaskLoader}></Route>
         <Route
           path="projects/:projectId/:taskId"
